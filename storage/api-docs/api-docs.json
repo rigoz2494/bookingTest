@@ -1,0 +1,244 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Test work",
+        "description": "Booking",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/auth/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "User login",
+                "description": "User Sign in",
+                "operationId": "Sign in",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api/auth/registration": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "User Registration",
+                "description": "USer Sign up",
+                "operationId": "registration",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api/books": {
+            "get": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Get list of books",
+                "description": "Returns list of books",
+                "operationId": "getBooksList",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/books/{id}": {
+            "get": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Get book",
+                "description": "Returns book",
+                "operationId": "getBook",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Book id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Delete book",
+                "description": "Delete the book",
+                "operationId": "Delete book",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Book id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/books/": {
+            "post": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Store book",
+                "description": "Store the book with success response",
+                "operationId": "Store book data",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "title": "Jessica Smith",
+                                    "description": "about book",
+                                    "categories": [
+                                        {
+                                            "name": "first"
+                                        },
+                                        {
+                                            "name": "second"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearer": {
+                "type": "apiKey",
+                "description": "Enter token in format (Bearer <token>)",
+                "name": "Authorization",
+                "in": "header"
+            }
+        }
+    }
+}
